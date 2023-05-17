@@ -26,6 +26,7 @@ export const BooksViews = () => {
             },
             (response) => {
                 setRows(response.data.results);
+                setLoading2(false);
             }
           )
     }, []);
