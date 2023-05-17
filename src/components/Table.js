@@ -11,7 +11,7 @@ export const Table = (props) => {
     return (
       <>
         { Object.keys(value).map((key,index) => (
-          key == "id" ? <th scope="row"><a href={(props.path+value[key])}>{value[key]}</a></th>:<td key={index}>{value[key]}</td>
+          key == "id" ? <th scope="row"><a onClick={() => navigate(props.path+value[key])} href="#">{value[key]}</a></th>:<td key={index}>{value[key]}</td>
         ))}
       </>
     );
