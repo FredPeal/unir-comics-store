@@ -2,6 +2,9 @@ import React from 'react';
 
 import {Card} from '../components/Card';
 import { useNavigate } from "react-router-dom";
+import comics from "../assets/comics.jpg";
+import client from "../assets/client.png";
+import facturas from "../assets/facturas.png";
 
 export const IndexView = () => {
     let navigate = useNavigate();
@@ -14,16 +17,13 @@ export const IndexView = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <Card path="/books" title="Libros" content="Libros disponibles" action_title="Ver libros"/>
+                        <Card path="/books" image={comics} title="Comics" content="Comics disponibles" action_title="Ver Comics"/>
                     </div>
                     <div className="col">
-                        <Card title="Clientes" content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum." action_title="Ver clientes"/>
+                        <Card title="Clientes" path="/clients" content="Base de Datos de nuestros clientes" image={client} action_title="Ver clientes"/>
                     </div>
                     <div className="col">
-                        <Card title="Usuarios" content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum." action_title="Ver usuarios"/>
-                    </div>
-                    <div className="col">
-                        <Card title="Ajustes" content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum." action_title="Ver ajustes"/>
+                        <Card title="Facturas" content="" image={facturas} action_title="Ver facturas" />
                     </div>
                 </div>
             </div>

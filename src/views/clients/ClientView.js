@@ -7,43 +7,72 @@ import axios from "axios";
 import Loading from '../../components/Loading';
 import {Icon} from '../../components/Icon';
 
-export const BooksViews = () => {
+export const ClientView = () => {
     let navigate = useNavigate();
     const { loading, error, data, API_REQUEST, setData } = useAxios();
     const [rows, setRows] = useState([]);
-    const [loading2, setLoading2] = useState(true);
+    const [loading2, setLoading2] = useState(false);
     let column = [
         "Id",
-        "Titulo",
-        "Descripcion",
+        "Nombre",
+        "Apellido",
+        "Telefono",
+        "Email",
     ];
     useEffect(() => {
-        API_REQUEST(
+        let clients = [
             {
-              AxiosInstance: axios,
-              method: "GET",
-              url: "/comics",
-              requestConfig: {}
-            },
-            (response) => {
-                let results = response.data.results.map((item) => {
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        description: item.description
-                    }
-                });
-                setRows(results);
-                setLoading2(false);
-            }
-          )
+                id: 1,
+                first_name: 'Juan',
+                last_name: 'Pérez',
+                phone: '123456789',
+                address: 'Calle Principal 123',
+                email: "juan@gmail.com"
+              },
+              {
+                id: 2,
+                first_name: 'María',
+                last_name: 'Gómez',
+                phone: '987654321',
+                address: 'Avenida Central 456',
+                email: "juan@gmail.com"
+
+              },
+              {
+                id: 3,
+                first_name: 'Pedro',
+                last_name: 'López',
+                phone: '555555555',
+                address: 'Plaza Mayor 789',
+                email: "juan@gmail.com"
+              },
+              {
+                id: 4,
+                first_name: 'Laura',
+                last_name: 'Rodríguez',
+                phone: '111111111',
+                address: 'Paseo del Sol 234',
+                email: "juan@gmail.com"
+              },
+              {
+                id: 5,
+                first_name: 'Carlos',
+                last_name: 'Hernández',
+                phone: '999999999',
+                address: 'Callejón Oscuro 567',
+                email: "juan@gmail.com"
+
+              }
+        ];
+        setRows(clients);
+
     }, []);
     return (
         <>
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h3>Libros</h3>
+                        <h3>Clientes</h3>
                     </div>
                 </div>
                 <div className="row">
@@ -56,7 +85,7 @@ export const BooksViews = () => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <Table column={column} rows={rows} path="/books/" />
+                        <Table column={column} rows={rows} path="/clients/" />
                         {loading2 ? <Loading/> : ""}
                     </div>
                 </div>
@@ -65,7 +94,7 @@ export const BooksViews = () => {
                         <button onClick={() => navigate("/")} className="btn btn-secondary">Menu Principal</button>
                     </div>
                     <div className="col">
-                        <button onClick={() => navigate("/books/create")} className="btn btn-primary">Crear</button>
+                        <button onClick={() => navigate("/clients/create")} className="btn btn-primary">Crear</button>
                     </div>
                 </div>
             </div>

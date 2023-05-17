@@ -7,6 +7,16 @@ export const Table = (props) => {
   console.log(props);
   let navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const renderTd = (value) => {
+    return (
+      <>
+        { Object.keys(value).map((key,index) => (
+          key == "id" ? <th scope="row"><a href={(props.path+value[key])}>{value[key]}</a></th>:<td key={index}>{value[key]}</td>
+        ))}
+      </>
+    );
+  };
+    
     return ( 
         <>
             <div className="container">
@@ -28,9 +38,7 @@ export const Table = (props) => {
                                 props.rows.map((item, index) => {
                                     return (
                                         <tr key={index}>
-                                            <th scope="row"><a href={(props.path+item.id)}>{item.id}</a></th>
-                                            <td>{item.title}</td>
-                                            <td>{item.description}</td>
+                                            {renderTd(item)}
                                             <td>
                                                 <Modal 
                                                   onClick={()=>{setShowModal(true)}} 
