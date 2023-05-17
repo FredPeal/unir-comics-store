@@ -17,7 +17,7 @@ const useAxios = () => {
     let ts = 1000;
     let hash =(MD5(`${ts}${privateKey}${apiKey}`).toString());
 
-    let fullUrl = `http://gateway.marvel.com/v1/public/${url}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=5`
+    let fullUrl = `https://gateway.marvel.com/v1/public/${url}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=5`
 
     try {
       setLoading(true);
