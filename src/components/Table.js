@@ -1,39 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { Paginator } from "./Paginator";
-export const Table = () => {
+import { useNavigate } from "react-router-dom";
+import {Modal} from "./Modal";
+
+export const Table = (props) => {
+  console.log(props);
+  let navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
     return ( 
         <>
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <table class="table">
+                        <table className="table">
                           <thead>
                             <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">First</th>
-                              <th scope="col">Last</th>
-                              <th scope="col">Handle</th>
+                              {
+                                props.column.map((item, index) => {
+                                    return <th key={index} scope="col">{item}</th>
+                                })
+                              }
+                              <th>Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                            </tr>
+                            {
+                                props.rows.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <th scope="row"><a href={(props.path+item.id)}>{item.id}</a></th>
+                                            <td>{item.title}</td>
+                                            <td>{item.description}</td>
+                                            <td>
+                                                <Modal 
+                                                  onClick={()=>{setShowModal(true)}} 
+                                                  onClose={()=>{setShowModal(false)}} 
+                                                  buttonText="Eliminar"
+                                                  showModal={showModal}
+                                                  content="¿Está seguro que desea eliminar este registro?"
+                                                  successButtonText="Eliminar"
+                                                  callback={() => {console.log("Eliminado"); setShowModal(false)}}
+                                                  buttonClassName="btn btn-danger">Eliminar</Modal>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
                           </tbody>
                         </table>   
                     </div>
